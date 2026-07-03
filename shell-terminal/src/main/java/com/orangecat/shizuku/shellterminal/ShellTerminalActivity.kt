@@ -28,7 +28,7 @@ class ShellTerminalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityShellTerminalBinding
     private lateinit var templatesAdapter: TemplatesAdapter
 
-    private var activeProcess: ShizukuRemoteProcess? = null
+    private var activeProcess: Process? = null
     private var processJob: Job? = null
     private var isRunningProcess = false
 
@@ -222,11 +222,18 @@ class ShellTerminalActivity : AppCompatActivity() {
         binding.btnRun.setImageResource(R.drawable.ic_stop)
 
         processJob = lifecycleScope.launch {
-            var process: ShizukuRemoteProcess? = null
+            var process: Process? = null
             try {
                 // Execute via shell -c so we support piping, grep, environment, etc.
                 process = withContext(Dispatchers.IO) {
-                    Shizuku.newProcess(arrayOf("/system/bin/sh", "-c", command), null, null)
+                    val method = Shizuku::class.java.getDeclaredMethod(
+                        "newProcess",
+                        Array<String>::class.java,
+                        Array<String>::class.java,
+                        String::class.java
+                    )
+                    method.isAccessible = true
+                    method.invoke(null, arrayOf("/system/bin/sh", "-c", command), null, null) as Process
                 }
                 activeProcess = process
 
