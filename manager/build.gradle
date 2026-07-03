@@ -12,7 +12,7 @@ plugins {
 android {
     namespace 'moe.shizuku.manager'
     defaultConfig {
-        applicationId "moe.shizuku.privileged.api"
+        applicationId "com.orangecat.shizuku.dev"
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
         externalNativeBuild {
@@ -151,6 +151,7 @@ dependencies {
     implementation project(':starter')
     implementation project(':api')
     implementation project(':provider')
+    implementation project(':shell-terminal')
 
     implementation libs.hidden.compat
     compileOnly libs.hidden.stub

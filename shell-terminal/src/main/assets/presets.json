@@ -1,0 +1,30 @@
+[
+  {
+    "name": "List Packages",
+    "command": "pm list packages"
+  },
+  {
+    "name": "Battery Status",
+    "command": "dumpsys battery"
+  },
+  {
+    "name": "List System Settings",
+    "command": "settings list system"
+  },
+  {
+    "name": "Check Logcat (last 50 lines)",
+    "command": "logcat -d -t 50"
+  },
+  {
+    "name": "Device Uptime",
+    "command": "uptime"
+  },
+  {
+    "name": "Process List",
+    "command": "ps -A"
+  },
+  {
+    "name": "Storage Info",
+    "command": "df -h"
+  }
+]

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1E1E1E">
+
+    <!-- Top Toolbar -->
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#1A1A1A"
+        android:theme="@style/ThemeOverlay.Material3.Dark.ActionBar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Shell Terminal"
+        app:titleTextColor="#FFFFFF"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:navigationIconTint="#FFFFFF" />
+
+    <!-- Horizontal Templates List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/templatesRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        tools:listitem="@layout/item_command_template" />
+
+    <!-- Terminal Output Area -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/terminalScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:background="#0C0C0C"
+        android:padding="8dp"
+        app:layout_constraintBottom_toTopOf="@id/inputBarrier"
+        app:layout_constraintTop_toBottomOf="@id/templatesRecyclerView">
+
+        <TextView
+            android:id="@+id/terminalOutput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Shizuku Terminal initialized.\nType a command below or tap a template to start.\n\n"
+            android:textColor="#00FF00"
+            android:textSize="13sp"
+            android:textIsSelectable="true" />
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/inputBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:referenced_ids="inputContainer" />
+
+    <!-- Input Area Container -->
+    <LinearLayout
+        android:id="@+id/inputContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A1A1A"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- History navigation buttons & Save template button -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quick History &amp; Actions:"
+                android:textColor="#888888"
+                android:textSize="11sp"
+                android:layout_marginStart="4dp"/>
+
+            <ImageButton
+                android:id="@+id/btnHistoryUp"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="History Up"
+                android:src="@drawable/ic_arrow_up"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnHistoryDown"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="History Down"
+                android:src="@drawable/ic_arrow_down"
+                app:tint="#FFFFFF" />
+
+            <ImageButton
+                android:id="@+id/btnSaveTemplate"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Save Command as Template"
+                android:src="@drawable/ic_save"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:hintEnabled="false">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/commandInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#262626"
+                    android:fontFamily="monospace"
+                    android:hint="Enter shell command..."
+                    android:inputType="text"
+                    android:maxLines="3"
+                    android:textColor="#FFFFFF"
+                    android:textColorHint="#666666"
+                    android:textSize="13sp"
+                    android:padding="10dp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageButton
+                android:id="@+id/btnRun"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_run_button"
+                android:contentDescription="Run Command"
+                android:src="@drawable/ic_play"
+                app:tint="#FFFFFF" />
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

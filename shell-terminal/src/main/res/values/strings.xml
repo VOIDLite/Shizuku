@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="shell_terminal_title">Shell Terminal</string>
+    <string name="shell_terminal_description">Run shell commands directly inside the app with Shizuku privileges.</string>
+    <string name="shell_terminal_not_running">Shizuku Service is not running. Please start Shizuku from the home screen first.</string>
+    <string name="shell_terminal_no_permission">Shizuku permission not granted. Please authorize this app first.</string>
+    <string name="shell_terminal_empty_command">Command cannot be empty</string>
+    <string name="shell_terminal_save_dialog_title">Save Custom Template</string>
+    <string name="shell_terminal_save_dialog_hint">Template Name (e.g. My Script)</string>
+    <string name="shell_terminal_edit_dialog_title">Edit Custom Template</string>
+    <string name="shell_terminal_dialog_delete">Delete</string>
+    <string name="shell_terminal_dialog_edit">Edit</string>
+    <string name="shell_terminal_dialog_cancel">Cancel</string>
+    <string name="shell_terminal_dialog_save">Save</string>
+</resources>
