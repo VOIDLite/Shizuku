@@ -222,10 +222,9 @@ class ShellTerminalActivity : AppCompatActivity() {
         binding.btnRun.setImageResource(R.drawable.ic_stop)
 
         processJob = lifecycleScope.launch {
-            var process: Process? = null
             try {
                 // Execute via shell -c so we support piping, grep, environment, etc.
-                process = withContext(Dispatchers.IO) {
+                val process = withContext(Dispatchers.IO) {
                     val method = Shizuku::class.java.getDeclaredMethod(
                         "newProcess",
                         Array<String>::class.java,
